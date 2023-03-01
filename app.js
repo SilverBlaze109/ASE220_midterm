@@ -1,5 +1,5 @@
 const quotes={
-	documentID:'1079835974602866688',
+	documentID:'1080638234383630336',
 	index:function(){
 		document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
 		database.index(quotes.documentID,function(items){
