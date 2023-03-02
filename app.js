@@ -1,17 +1,29 @@
 const quotes={
 	documentID:'1080638234383630336',
-	index:function(){
+	getSections:function(){
+		//document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
+		database.index(quotes.documentID,function(items){
+			var sectionArray = Object.keys(items[0]);
+			var temp = document.getElementById('sections');
+			for (var x = 0; x < sectionArray.length; x++)
+			{
+				temp.innerText += sectionArray[x];
+			}
+		});
+	},
+	index:function(section){
 		document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
 		database.index(quotes.documentID,function(items){
 			document.getElementById('quotes').innerHTML='';
-			for(let i=0;i<items.length;i++){
-				let quote=items[i];
+			var postArray = items[0][section].posts;
+			for(let i=0;i<postArray.length;i++){
+				let quote=postArray[i];
+				console.log(quote.questions);
 				let el=document.createElement('div');
 				el.innerHTML=`<div>
 						<blockquote>
-							<em><a href="detail.html?index=${i}">${quote.quote}</a></em>
+							<em><a href="detail.html?index=${i}">${quote.questions}</a></em>
 						</blockquote>
-						${quote.author}
 						<hr />
 					</div>`;
 				document.getElementById('quotes').append(el);
