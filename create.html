@@ -12,7 +12,7 @@
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-			  <a class="nav-link active" aria-current="page" href="#">Home</a>
+			  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
 			  <a class="nav-link" href="#">Math</a>
 			  <a class="nav-link" href="#">English</a>
 			  <a class="nav-link" href="create.html">Ask a Question</a>
@@ -20,18 +20,28 @@
 		  </div>
 		</div>
 	  </nav>
-<h1>Question & Answer HUB</h1>
- 
-<div id="quotes">
-</div>
+<h1>Create Your Post</h1>
+
+<form>
+	<div>
+		<label>Section (Math, English, Science)</label><br />
+		<input name="author" type="text" /><br />
+	</div>
+	<br />
+	<div>
+		<label>Question</label><br />
+		<textarea name="quote" rows="5"></textarea><br />
+	</div>
+	<br />
+	<button type="submit">Create post</button>
+</form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="assets/api.js"></script>
 <script src="assets/database.js"></script>
 <script src="app.js"></script>
 <script>
-	var section = "Math";
-	quotes.index(section);
+	quotes.create();
 </script>
 </body>
 </html>
