@@ -68,6 +68,14 @@
 	<span id="quote-author"></span>
 	<hr />
 </div>
+<form>
+	<div>
+		<label>Comment</label><br />
+		<textarea name="comment" rows="2"></textarea><br />
+	</div>
+	<br />
+	<button type="submit">Comment</button>
+</form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="assets/api.js"></script>
@@ -81,7 +89,7 @@
 	var section = getAllUrlParams().section;
 	if (section == undefined)
 	{
-		section = "Math";
+		section = quotes.getFirstOK();
 	}
 	else
 	{
@@ -91,6 +99,7 @@
 	
 	backButton.setAttribute("href", "index.html?section="+section);
 	quotes.detail(section, getAllUrlParams().index);
+	quotes.createComment(section, getAllUrlParams().index);
 </script>
 </body>
 </html>

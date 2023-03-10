@@ -1,5 +1,8 @@
 const quotes={
 	documentID:'1080638234383630336',
+	getFirstOK:function(){
+		return database.getOK();
+	},
 	getSections:function(){
 		//document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
 		database.index(quotes.documentID,function(items){
@@ -21,7 +24,6 @@ const quotes={
 			var postArray = items[0][section].posts;
 			for(let i=0;i<postArray.length;i++){
 				let quote=postArray[i];
-				console.log(quote.questions);
 				let el=document.createElement('div');
 				el.innerHTML=`<div>
 						<blockquote>
@@ -60,6 +62,14 @@ const quotes={
 				answers:[]
 			}
 			database.create(quotes.documentID,section.value,newQuote);
+		});
+	},
+	createComment:function(section, index){
+		document.querySelector('form').addEventListener('submit',function(e){
+			e.preventDefault();
+			let comment=document.querySelector('form textarea[name=comment]');
+
+			database.createC(quotes.documentID,section,index,comment.value);
 		});
 	},
 	createSection:function(){
@@ -101,19 +111,15 @@ const quotes={
 	update:function(section, index){
 		database.detail(quotes.documentID,section,index,function(item){
 			document.getElementById('loading').style.display='none';
-			console.log(item);
+			//console.log(item);
 			//document.querySelector('form select[name=section]').value=item.author;
 			document.querySelector('form textarea[name=question]').value=item.questions;
 			
 			document.querySelector('form').addEventListener('submit',function(e){
 				e.preventDefault();
-				let section=document.querySelector('form select[name=section]');
 				let question=document.querySelector('form textarea[name=question]');
-				let newQuote={
-					questions:question.value,
-					answers:[]
-				}
-				database.update(quotes.documentID,section.value,index,newQuote);
+				
+				database.update(quotes.documentID,section,index,question.value);
 			});
 		});
 	}

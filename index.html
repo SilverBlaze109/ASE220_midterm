@@ -67,7 +67,7 @@
       <h1>Question & Answer Hub</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <hr>
-      <h3>Recent Questions</h3>
+      <h3 id="title">Recent Questions</h3>
 	  <br>
       <div id="quotes"></div>
       <p id="quotes"></p>
@@ -105,6 +105,10 @@
 	{
 		section = section.charAt(0).toUpperCase() + section.slice(1);
 	}
+
+  let hTitle = document.getElementById("title");
+  hTitle.innerText += ' for ' + section;
+
 	quotes.index(section);
 </script>
 </body>

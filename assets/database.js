@@ -11,11 +11,11 @@ const database={
 	},
 	update:function(documentID,section,index,newData){
 		api.GET(documentID,function(response){
+			console.log(section);
 			let array = response.data[0][section].posts
-			console.log(array[index]);
-			array[index]=newData;
+			array[index].questions=newData;
 			api.PUT(documentID,response.data,function(){
-				alert('The quote has been updated. Please go back to the home page');
+				window.location.href = "index.html?section="+section;
 			});
 		});
 	},
@@ -24,7 +24,7 @@ const database={
 			let array = response.data[0][section].posts
 			array.splice(index,1);
 			api.PUT(documentID,response.data,function(){
-				alert('The quote has been deleted. Please go back to the home page');
+				window.location.href = "index.html?section="+section;
 			});
 		});
 	},
@@ -34,7 +34,16 @@ const database={
 			console.log(response.data[0]);
 			array.push(newData);
 			api.PUT(documentID,response.data,function(){
-				alert('The quote has been added. Please go back to the home page');
+				window.location.href = "index.html?section="+section;
+			});
+		});
+	},
+	createC:function(documentID,section,index,newData){
+		api.GET(documentID,function(response){
+			let array = response.data[0][section].posts[index].answers;
+			array.push(newData);
+			api.PUT(documentID,response.data,function(){
+				location.reload();
 			});
 		});
 	},
@@ -46,7 +55,7 @@ const database={
 			console.log(response.data[0]);
 			array[newData] = {posts:[]};
 			api.PUT(documentID,response.data,function(){
-				alert('The section has been added. Please go back to the home page');
+				window.location.href = "index.html?section="+newData;
 			});
 		});
 	},
@@ -55,7 +64,7 @@ const database={
 			let array = response.data[0]
 			delete array[newData];
 			api.PUT(documentID,response.data,function(){
-				alert('The section has been removed. Please go back to the home page');
+				location.reload();
 			});
 		});
 	},
@@ -66,8 +75,14 @@ const database={
 			array[newSection] = array[oldSection];
 			delete array[oldSection];
 			api.PUT(documentID,response.data,function(){
-				alert('The section has been renamed. Please go back to the home page');
+				window.location.href = "index.html?section="+newSection;
 			});
 		});
 	},
+	getOK:function(){
+		api.GET(documentID,function(response){
+			let array = Object.keys(response.data);
+			return response.data[array[0]];
+		})
+	}
 }
