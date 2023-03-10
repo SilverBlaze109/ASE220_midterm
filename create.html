@@ -24,8 +24,10 @@
 
 <form>
 	<div>
-		<label>Section (Math, English, Science)</label><br />
-		<input name="section" type="text" /><br />
+		<label for="section">Section</label><br />
+		<select name="section" id="dropSection">
+			
+		</select><br />
 	</div>
 	<br />
 	<div>
@@ -41,6 +43,7 @@
 <script src="assets/database.js"></script>
 <script src="app.js"></script>
 <script>
+	quotes.getSelection();
 	quotes.create();
 </script>
 </body>

@@ -50,13 +50,25 @@ const quotes={
 	create:function(){
 		document.querySelector('form').addEventListener('submit',function(e){
 			e.preventDefault();
-			let section=document.querySelector('form input[name=section]');
+			let section=document.querySelector('form select[name=section]');
 			let question=document.querySelector('form textarea[name=question]');
+
 			let newQuote={
 				questions:question.value,
 				answers:[]
 			}
 			database.create(quotes.documentID,section.value,newQuote);
+		});
+	},
+	getSelection:function(){
+		//document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
+		database.index(quotes.documentID,function(items){
+			var sectionArray = Object.keys(items[0]);
+			var temp = document.getElementById('dropSection');
+			for (let x = 0; x < sectionArray.length; x++)
+			{
+				temp.innerHTML += `<option value="${sectionArray[x]}">${sectionArray[x]}</option>`;
+			}
 		});
 	},
 	update:function(index){
