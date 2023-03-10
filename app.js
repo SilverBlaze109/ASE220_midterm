@@ -1,7 +1,7 @@
 const quotes={
 	documentID:'1080638234383630336',
 	getFirstOK:function(){
-		return database.getOK();
+		database.getOK(quotes.documentID);
 	},
 	getSections:function(){
 		//document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
@@ -40,7 +40,14 @@ const quotes={
 			document.getElementById('loading').style.display='none';
 			for (let x = 0; x < item.answers.length; x++)
 			{
-				document.getElementById('quote-author').innerText+=item.answers[x]+`\n`;
+				let tempDiv = document.getElementById('quote-author');
+				tempDiv.innerHTML += item.answers[x];
+				tempDiv.innerHTML += `\t<a href="editC.html?section=${section}&index=${index}&comindex=${x}">Edit Comment</a>\n`
+				tempDiv.innerHTML += `\t<button type="button" id="delCom">Delete Comment</button><br>`
+				let delB = document.getElementById('delCom');
+				delB.addEventListener('click',function(){
+					database.deleteC(quotes.documentID,section,index,x);
+				});
 			}
 			document.getElementById('quote-text').innerText=item.questions;
 			document.getElementById('btn-edit').setAttribute('href',`edit.html?index=${index}&section=${section}`);
@@ -120,6 +127,23 @@ const quotes={
 				let question=document.querySelector('form textarea[name=question]');
 				
 				database.update(quotes.documentID,section,index,question.value);
+			});
+		});
+	},
+	updateC:function(section, index, cIndex){
+		database.detail(quotes.documentID,section,index,function(item){
+			document.getElementById('loading').style.display='none';
+			//console.log(item);
+			//document.querySelector('form select[name=section]').value=item.author;
+			console.log(item.answers);
+			console.log(cIndex);
+			document.querySelector('form textarea[name=question]').value=item.answers[cIndex];
+			
+			document.querySelector('form').addEventListener('submit',function(e){
+				e.preventDefault();
+				let question=document.querySelector('form textarea[name=question]');
+				
+				database.updateC(quotes.documentID,section,index,cIndex,question.value);
 			});
 		});
 	}
