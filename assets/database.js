@@ -45,7 +45,19 @@ const database={
 			console.log(response.data[0]);
 			array[newData] = [];
 			api.PUT(documentID,response.data,function(){
-				alert('The quote has been added. Please go back to the home page');
+				alert('The section has been added. Please go back to the home page');
+			});
+		});
+	},
+	deleteS:function(documentID,newData){
+		api.GET(documentID,function(response){
+			let array = response.data[0]
+			//array.push(newData);
+			console.log(newData);
+			console.log(response.data[0]);
+			delete array[newData];
+			api.PUT(documentID,response.data,function(){
+				alert('The section has been removed. Please go back to the home page');
 			});
 		});
 	},

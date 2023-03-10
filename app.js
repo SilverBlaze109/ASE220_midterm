@@ -10,6 +10,7 @@ const quotes={
 				temp.innerHTML += `<li><a href="index.html?section=${sectionArray[x]}">${sectionArray[x]}</a></li>`;
 			}
 			temp.innerHTML += `<li><a href="createS.html">New Section</a></li>`;
+			temp.innerHTML += `<li><a href="deleteS.html">Delete Section</a></li>`;
 		});
 	},
 	index:function(section){
@@ -66,6 +67,14 @@ const quotes={
 			let question=document.querySelector('form textarea[name=sectionName]');
 
 			database.createS(quotes.documentID,question.value);
+		});
+	},
+	deleteSection:function(){
+		document.querySelector('form').addEventListener('submit',function(e){
+			e.preventDefault();
+			let section=document.querySelector('form select[name=section]');
+
+			database.deleteS(quotes.documentID,section.value);
 		});
 	},
 	getSelection:function(){
