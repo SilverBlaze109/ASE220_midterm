@@ -31,6 +31,7 @@ const database={
 	create:function(documentID,section,newData){
 		api.GET(documentID,function(response){
 			let array = response.data[0][section].posts
+			console.log(response.data[0]);
 			array.push(newData);
 			api.PUT(documentID,response.data,function(){
 				alert('The quote has been added. Please go back to the home page');
@@ -43,7 +44,7 @@ const database={
 			//array.push(newData);
 			console.log(newData);
 			console.log(response.data[0]);
-			array[newData] = [];
+			array[newData] = {posts:[]};
 			api.PUT(documentID,response.data,function(){
 				alert('The section has been added. Please go back to the home page');
 			});
@@ -52,12 +53,20 @@ const database={
 	deleteS:function(documentID,newData){
 		api.GET(documentID,function(response){
 			let array = response.data[0]
-			//array.push(newData);
-			console.log(newData);
-			console.log(response.data[0]);
 			delete array[newData];
 			api.PUT(documentID,response.data,function(){
 				alert('The section has been removed. Please go back to the home page');
+			});
+		});
+	},
+	updateS:function(documentID,oldSection,newSection){
+		api.GET(documentID,function(response){
+			let array = response.data[0]
+			//array.push(newData);
+			array[newSection] = array[oldSection];
+			delete array[oldSection];
+			api.PUT(documentID,response.data,function(){
+				alert('The section has been renamed. Please go back to the home page');
 			});
 		});
 	},

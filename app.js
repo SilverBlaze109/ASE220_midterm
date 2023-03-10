@@ -11,10 +11,11 @@ const quotes={
 			}
 			temp.innerHTML += `<li><a href="createS.html">New Section</a></li>`;
 			temp.innerHTML += `<li><a href="deleteS.html">Delete Section</a></li>`;
+			temp.innerHTML += `<li><a href="editS.html">Rename Section</a></li>`;
 		});
 	},
 	index:function(section){
-		document.getElementById('quotes').innerHTML='Loading quotes, please wait...';
+		document.getElementById('quotes').innerHTML='Loading questions, please wait...';
 		database.index(quotes.documentID,function(items){
 			document.getElementById('quotes').innerHTML='';
 			var postArray = items[0][section].posts;
@@ -75,6 +76,15 @@ const quotes={
 			let section=document.querySelector('form select[name=section]');
 
 			database.deleteS(quotes.documentID,section.value);
+		});
+	},
+	updateSection:function(){
+		document.querySelector('form').addEventListener('submit',function(e){
+			e.preventDefault();
+			let section=document.querySelector('form select[name=section]');
+			let newS=document.querySelector('form textarea[name=newSection]');
+
+			database.updateS(quotes.documentID,section.value,newS.value);
 		});
 	},
 	getSelection:function(){
