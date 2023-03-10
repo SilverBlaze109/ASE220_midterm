@@ -11,17 +11,15 @@
 			<span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
+			<div class="navbar-nav" id="sections">
 			  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-			  <a class="nav-link" href="#">Math</a>
-			  <a class="nav-link" href="#">English</a>
-			  <a class="nav-link" href="create.html">Ask a Question</a>
+			  
 			</div>
 		  </div>
 		</div>
 	  </nav>
 <h1>Detail</h1>
-<a href="index.html">Back to index</a> | <a id="btn-edit" href="">Edit quote</a> | <button type="button" id="btn-delete">Delete quote</button>
+<a href="index.html" id="backButton">Back to index</a> | <a id="btn-edit" href="">Edit quote</a> | <button type="button" id="btn-delete">Delete quote</button>
 <div id="loading">Loading quote...</div>
 <div id="quote">
 	<blockquote>
@@ -37,7 +35,21 @@
 <script src="assets/getAllURLParams.js"></script>
 <script src="app.js"></script>
 <script>
-	quotes.detail(getAllUrlParams().index);
+	let backB = document.getElementById("backButton");
+	
+	var section = getAllUrlParams().section;
+	if (section == undefined)
+	{
+		section = "Math";
+	}
+	else
+	{
+		section = section.charAt(0).toUpperCase() + section.slice(1);
+	}
+
+	
+	backButton.setAttribute("href", "index.html?section="+section);
+	quotes.detail(section, getAllUrlParams().index);
 </script>
 </body>
 </html>

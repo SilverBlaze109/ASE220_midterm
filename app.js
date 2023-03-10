@@ -7,8 +7,9 @@ const quotes={
 			var temp = document.getElementById('sections');
 			for (var x = 0; x < sectionArray.length; x++)
 			{
-				temp.innerText += sectionArray[x];
+				temp.innerHTML += `<a class="nav-link" href="index.html?section=${sectionArray[x]}">${sectionArray[x]}</a>`;
 			}
+			temp.innerHTML += `<a class="nav-link" href="create.html">Ask a Question</a>`;
 		});
 	},
 	index:function(section){
@@ -22,7 +23,7 @@ const quotes={
 				let el=document.createElement('div');
 				el.innerHTML=`<div>
 						<blockquote>
-							<em><a href="detail.html?index=${i}">${quote.questions}</a></em>
+							<em><a href="detail.html?index=${i}&section=${section}">${quote.questions}</a></em>
 						</blockquote>
 						<hr />
 					</div>`;
@@ -30,16 +31,19 @@ const quotes={
 			}
 		});
 	},
-	detail:function(index){
-		database.detail(quotes.documentID,index,function(item){
+	detail:function(section, index){
+		database.detail(quotes.documentID,section,index,function(item){
 			document.getElementById('loading').style.display='none';
-			document.getElementById('quote-author').innerText=item.author;
-			document.getElementById('quote-text').innerText=item.quote;
-			document.getElementById('btn-edit').setAttribute('href',`edit.html?index=${index}`);
+			for (let x = 0; x < item.answers.length; x++)
+			{
+				document.getElementById('quote-author').innerText+=item.answers[x]+`\n`;
+			}
+			document.getElementById('quote-text').innerText=item.questions;
+			document.getElementById('btn-edit').setAttribute('href',`edit.html?index=${index}&section=${section}`);
 							
 			let deleteButton=document.getElementById('btn-delete');
 			deleteButton.addEventListener('click',function(){
-				database.delete(quotes.documentID,index);
+				database.delete(quotes.documentID,section,index);
 			});
 		});
 	},

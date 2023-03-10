@@ -4,9 +4,9 @@ const database={
 			callback(response.data);
 		});
 	},
-	detail:function(documentID,index,callback){
+	detail:function(documentID,section,index,callback){
 		api.GET(documentID,function(response){
-			callback(response.data[index]);
+			callback(response.data[0][section].posts[index]);
 		});
 	},
 	update:function(documentID,index,newData){
@@ -17,9 +17,10 @@ const database={
 			});
 		});
 	},
-	delete:function(documentID,index){
+	delete:function(documentID,section,index){
 		api.GET(documentID,function(response){
-			response.data.splice(index,1);
+			let array = response.data[0][section].posts
+			array.splice(index,1);
 			api.PUT(documentID,response.data,function(){
 				alert('The quote has been deleted. Please go back to the home page');
 			});

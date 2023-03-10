@@ -11,11 +11,9 @@
 			<span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
+			<div class="navbar-nav" id="sections">
 			  <a class="nav-link active" aria-current="page" href="#">Home</a>
-			  <a class="nav-link" href="#">Math</a>
-			  <a class="nav-link" href="#">English</a>
-			  <a class="nav-link" href="create.html">Ask a Question</a>
+			  
 			</div>
 		  </div>
 		</div>
@@ -28,10 +26,20 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="assets/api.js"></script>
 <script src="assets/database.js"></script>
+<script src="assets/getAllURLParams.js"></script>
 <script src="app.js"></script>
 <script>
-	var section = "Math";
+	var section = getAllUrlParams().section;
+	if (section == undefined)
+	{
+		section = "Math";
+	}
+	else
+	{
+		section = section.charAt(0).toUpperCase() + section.slice(1);
+	}
 	quotes.index(section);
+	quotes.getSections();
 </script>
 </body>
 </html>
