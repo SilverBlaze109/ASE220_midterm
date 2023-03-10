@@ -9,7 +9,7 @@ const quotes={
 			{
 				temp.innerHTML += `<li><a href="index.html?section=${sectionArray[x]}">${sectionArray[x]}</a></li>`;
 			}
-			//temp.innerHTML += `<a class="nav-link" href="create.html">Ask a Question</a>`;
+			temp.innerHTML += `<li><a href="createS.html">New Section</a></li>`;
 		});
 	},
 	index:function(section){
@@ -58,6 +58,14 @@ const quotes={
 				answers:[]
 			}
 			database.create(quotes.documentID,section.value,newQuote);
+		});
+	},
+	createSection:function(){
+		document.querySelector('form').addEventListener('submit',function(e){
+			e.preventDefault();
+			let question=document.querySelector('form textarea[name=sectionName]');
+
+			database.createS(quotes.documentID,question.value);
 		});
 	},
 	getSelection:function(){

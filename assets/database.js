@@ -30,12 +30,20 @@ const database={
 	},
 	create:function(documentID,section,newData){
 		api.GET(documentID,function(response){
-			console.log(response.data[0]);
-			console.log(section);
 			let array = response.data[0][section].posts
-			console.log(newData);
 			array.push(newData);
-			console.log(array);
+			api.PUT(documentID,response.data,function(){
+				alert('The quote has been added. Please go back to the home page');
+			});
+		});
+	},
+	createS:function(documentID,newData){
+		api.GET(documentID,function(response){
+			let array = response.data[0]
+			//array.push(newData);
+			console.log(newData);
+			console.log(response.data[0]);
+			array[newData] = [];
 			api.PUT(documentID,response.data,function(){
 				alert('The quote has been added. Please go back to the home page');
 			});

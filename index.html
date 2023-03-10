@@ -95,6 +95,7 @@
 <script src="assets/getAllURLParams.js"></script>
 <script src="app.js"></script>
 <script>
+	quotes.getSections();
 	var section = getAllUrlParams().section;
 	if (section == undefined)
 	{
@@ -105,7 +106,6 @@
 		section = section.charAt(0).toUpperCase() + section.slice(1);
 	}
 	quotes.index(section);
-	quotes.getSections();
 </script>
 </body>
 </html>
