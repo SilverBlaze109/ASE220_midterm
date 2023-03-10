@@ -7,9 +7,9 @@ const quotes={
 			var temp = document.getElementById('sections');
 			for (var x = 0; x < sectionArray.length; x++)
 			{
-				temp.innerHTML += `<a class="nav-link" href="index.html?section=${sectionArray[x]}">${sectionArray[x]}</a>`;
+				temp.innerHTML += `<li><a href="index.html?section=${sectionArray[x]}">${sectionArray[x]}</a></li>`;
 			}
-			temp.innerHTML += `<a class="nav-link" href="create.html">Ask a Question</a>`;
+			//temp.innerHTML += `<a class="nav-link" href="create.html">Ask a Question</a>`;
 		});
 	},
 	index:function(section){
