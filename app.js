@@ -50,13 +50,13 @@ const quotes={
 	create:function(){
 		document.querySelector('form').addEventListener('submit',function(e){
 			e.preventDefault();
-			let author=document.querySelector('form input[name=author]');
-			let quote=document.querySelector('form textarea[name=quote]');
+			let section=document.querySelector('form input[name=section]');
+			let question=document.querySelector('form textarea[name=question]');
 			let newQuote={
-				author:author.value,
-				quote:quote.value
+				questions:question.value,
+				answers:[]
 			}
-			database.create(quotes.documentID,newQuote);
+			database.create(quotes.documentID,section.value,newQuote);
 		});
 	},
 	update:function(index){
