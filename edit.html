@@ -25,16 +25,18 @@
 <div id="loading">Loading quote...</div>
 <form>
 	<div>
-		<label>Author</label><br />
-		<input name="author" type="text" /><br />
+		<label for="section">Section</label><br />
+		<select name="section" id="dropSection">
+			
+		</select><br />
 	</div>
 	<br />
 	<div>
-		<label>Text</label><br />
-		<textarea name="quote" rows="5"></textarea><br />
+		<label>Question</label><br />
+		<textarea name="question" rows="5"></textarea><br />
 	</div>
 	<br />
-	<button type="submit">Edit quote</button>
+	<button type="submit">Edit post</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -43,7 +45,18 @@
 <script src="assets/getAllURLParams.js"></script>
 <script src="app.js"></script>
 <script>
-	quotes.update(getAllUrlParams().index);
+	quotes.getSelection();
+	var section = getAllUrlParams().section;
+	if (section == undefined)
+	{
+		section = "Math";
+	}
+	else
+	{
+		section = section.charAt(0).toUpperCase() + section.slice(1);
+	}
+
+	quotes.update(section, getAllUrlParams().index);
 </script>
 </body>
 </html>

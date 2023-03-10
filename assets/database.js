@@ -9,9 +9,11 @@ const database={
 			callback(response.data[0][section].posts[index]);
 		});
 	},
-	update:function(documentID,index,newData){
+	update:function(documentID,section,index,newData){
 		api.GET(documentID,function(response){
-			response.data[index]=newData;
+			let array = response.data[0][section].posts
+			console.log(array[index]);
+			array[index]=newData;
 			api.PUT(documentID,response.data,function(){
 				alert('The quote has been updated. Please go back to the home page');
 			});

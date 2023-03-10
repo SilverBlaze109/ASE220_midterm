@@ -71,21 +71,22 @@ const quotes={
 			}
 		});
 	},
-	update:function(index){
-		database.detail(quotes.documentID,index,function(item){
+	update:function(section, index){
+		database.detail(quotes.documentID,section,index,function(item){
 			document.getElementById('loading').style.display='none';
-			document.querySelector('form input[name=author]').value=item.author;
-			document.querySelector('form textarea[name=quote]').value=item.quote;
+			console.log(item);
+			//document.querySelector('form select[name=section]').value=item.author;
+			document.querySelector('form textarea[name=question]').value=item.questions;
 			
 			document.querySelector('form').addEventListener('submit',function(e){
 				e.preventDefault();
-				let author=document.querySelector('form input[name=author]');
-				let quote=document.querySelector('form textarea[name=quote]');
+				let section=document.querySelector('form select[name=section]');
+				let question=document.querySelector('form textarea[name=question]');
 				let newQuote={
-					author:author.value,
-					quote:quote.value
+					questions:question.value,
+					answers:[]
 				}
-				database.update(quotes.documentID,index,newQuote);
+				database.update(quotes.documentID,section.value,index,newQuote);
 			});
 		});
 	}
