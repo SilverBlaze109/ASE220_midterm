@@ -32,22 +32,27 @@
 <div class="container-fluid text-center">    
 <div class="row content">
 <h1>Detail</h1>
-<a href="index.html" id="backButton">Back to index</a> | <a id="btn-edit" href="">Edit quote</a> | <button type="button" id="btn-delete">Delete quote</button>
+
+<br />
 <div id="loading">Loading question...</div>
 <div id="quote">
 	<blockquote>
 		<em id="quote-text"></em>
 	</blockquote>
-	<span id="quote-author"></span>
-	<hr />
+	
 </div>
-<form>
+<button href="index.html" id="backButton" class="btn btn-dark">Back to index</button>&emsp;<button id="btn-edit" class="btn btn-primary">Edit question</button>&emsp;<button type="button" id="btn-delete" class="btn btn-danger">Delete question</button>
+<hr />
+<div id="quote">
+	<span id="quote-author"></span>
+</div>
+<form class="container">
 	<div>
-		<label>Comment</label><br />
-		<textarea name="comment" rows="2"></textarea><br />
+		<label>Have an answer to this question?</label><br />
+		<textarea class="form-control form-control-sm" name="comment" rows="2" placeholder="Your answer here"></textarea><br />
 	</div>
 	<br />
-	<button type="submit">Comment</button>
+	<button type="submit" class="btn btn-success">Post comment</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
