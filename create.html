@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="stylesheeet.css">
+  <link rel="stylesheet" href="stylesheet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -33,20 +33,22 @@
 <div class="row content">
 <h1>Create Your Post</h1>
 
-<form>
+<form class="container">
 	<div>
 		<label for="section">Section</label><br />
-		<select name="section" id="dropSection">
+		<select name="section" class="form-select" id="dropSection">
+			<option selected>Choose...</option>
+			<option value="0"></option>
 			
 		</select><br />
 	</div>
 	<br />
 	<div>
 		<label>Question</label><br />
-		<textarea name="question" rows="5"></textarea><br />
+		<textarea class="form-control form-control-sm" name="question" rows="5"></textarea><br />
 	</div>
 	<br />
-	<button type="submit">Create post</button>
+	<button type="submit" class="btn btn-success">Create post</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

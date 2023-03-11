@@ -4,36 +4,9 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    .row.content {height: 450px}
-    
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 200%;
-    }
-    
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -60,13 +33,13 @@
 <div class="row content">
 <h1>Create Section</h1>
 
-<form>
+<form class="container">
 	<div>
 		<label for="section">Section Name</label><br />
-		<textarea name="sectionName" rows="1"></textarea><br />
+		<textarea class ="form-control form-control-sm" name="sectionName" rows="1"></textarea><br />
 	</div>
 	<br />
-	<button type="submit">Create Section</button>
+	<button type="submit" class="btn btn-success">Create Section</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
