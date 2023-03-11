@@ -1,13 +1,5 @@
-#NKU ASE220 Mid-term starter package
-This repository is designed for the ASE220 - Full-stack development course. This repository contains a starter application for the midterm that demonstrates how to create a full-stack Content Management System (CMS) that leverages JSONblob.com as a remote database.
-
-### The application demostrates:
-- client-side application design
-- the use of RESTful APIs
-- CRUD operations
-- client-server communication
-
-I did not implement any fancy HTML/CSS design because the focus of this application is to understand how a client application would interact with the server-side component via REST APIs.
+#ASE220_midterm
+This website is a basic forum. The users can create sections to ask questions about various topics. Within each section, the users can post questions, and other users can respond to the questions.
 
 ### How to start
 1. Load the folder into Visual Studio code and start the live server
@@ -19,9 +11,16 @@ The assets folder contains the following "libraries":
 - database.js: this library manages CRUD database operations and standardizes them, providing an interface to the API libary.
 - getAllURLParams.js: this library retrieves query string parameters, which are utilized to view, edit, or delete a single quote.
 
-This application is built using the Model-View-Controller approach, to best separate the interface (HTML), the data (API/JSON), and the logic. This is implemented as follows:
-- The HTML files only contain HTML code and links to external JavaScript files.
-- The app.js file contains the logic of the application: it manipulates the DOM, listens to events, and communicates with the database
-- The database and APIs provide the application with data storage/retrieval capabilities.
+The database is a jsonBlob file that contains one object. The object contains different entities as described in the "What Entities" section below. The jsonBlob is manipulated by the functinos in database.js that are called by app.js.
 
-Have fun!
+Each html document calls a function or multiple functions from app.js to manipulate the current page or to modify the database. Notable funcitons include but aren't limited to:
+ - getSections(): adds each Section name and a link to the navBar on the top of each page.
+ - createComment(section, index): adds a comment to the post indicated by the section and index parameters
+ - updateSection(section): is run on submission of a <form>; takes input and uses it to add a new section to the json database
+
+ ### What Entities
+ There are 3 entities manipulated by the website as listed below.
+ - Sections - topics users can ask questions about
+ - Questions - specific question in a section
+ - Comments - a comment to a question
+ All of these entities can be created, edited, and deleted by the user, and they are displayed in the website.
