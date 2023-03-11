@@ -47,6 +47,25 @@ const database={
 			});
 		});
 	},
+	deleteC:function(documentID,section,index,comIndex){
+		api.GET(documentID,function(response){
+			let array = response.data[0][section].posts[index].answers;
+			array.splice(comIndex,1);
+			api.PUT(documentID,response.data,function(){
+				window.location.href = "detail.html?index="+index+"&section="+section;
+			});
+		});
+	},
+	updateC:function(documentID,section,index,cIndex,newData){
+		api.GET(documentID,function(response){
+			console.log(section);
+			let array = response.data[0][section].posts[index].answers
+			array[cIndex]=newData;
+			api.PUT(documentID,response.data,function(){
+				window.location.href = "detail.html?section="+section+"&index="+index;
+			});
+		});
+	},
 	createS:function(documentID,newData){
 		api.GET(documentID,function(response){
 			let array = response.data[0]
@@ -79,10 +98,10 @@ const database={
 			});
 		});
 	},
-	getOK:function(){
+	getOK:function(documentID, hiddenInfo){
 		api.GET(documentID,function(response){
-			let array = Object.keys(response.data);
-			return response.data[array[0]];
+			let array = Object.keys(response.data[0]);
+			window.location.href = "index.html?section="+array[0];
 		})
 	}
 }

@@ -4,11 +4,39 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="stylesheeet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    .row.content {height: 450px}
+    
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 200%;
+    }
+    
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 		  <div class="navbar-header">
@@ -31,23 +59,18 @@
 	  </nav>
 <div class="container-fluid text-center">    
 <div class="row content">
-<h1>Detail</h1>
-<a href="index.html" id="backButton">Back to index</a> | <a id="btn-edit" href="">Edit quote</a> | <button type="button" id="btn-delete">Delete quote</button>
-<div id="loading">Loading question...</div>
-<div id="quote">
-	<blockquote>
-		<em id="quote-text"></em>
-	</blockquote>
-	<span id="quote-author"></span>
-	<hr />
+<h1>Edit</h1>
+<div id="loading">Loading commnet...</div>
+<div id="ogQuestion">
+
 </div>
 <form>
 	<div>
 		<label>Comment</label><br />
-		<textarea name="comment" rows="2"></textarea><br />
+		<textarea name="question" rows="5"></textarea><br />
 	</div>
 	<br />
-	<button type="submit">Comment</button>
+	<button type="submit">Edit post</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -57,14 +80,10 @@
 <script src="app.js"></script>
 <script>
 	quotes.getSections();
-	let backB = document.getElementById("backButton");
-	
 	var section = getAllUrlParams().section;
 	section = section.charAt(0).toUpperCase() + section.slice(1);
-	
-	backButton.setAttribute("href", "index.html?section="+section);
-	quotes.detail(section, getAllUrlParams().index);
-	quotes.createComment(section, getAllUrlParams().index);
+
+	quotes.updateC(section, getAllUrlParams().index, getAllUrlParams().comindex);
 </script>
 </body>
 </html>

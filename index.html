@@ -55,7 +55,7 @@
     </div>
   </div>
 </div>
-
+<span hidden id="hSection"></span>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
@@ -72,12 +72,13 @@
 	var section = getAllUrlParams().section;
 	if (section == undefined)
 	{
-		section = "Math";
+		quotes.getFirstOK();
 	}
 	else
 	{
 		section = section.charAt(0).toUpperCase() + section.slice(1);
 	}
+  console.log(section);
 
   let hTitle = document.getElementById("title");
   hTitle.innerText += ' for ' + section;
