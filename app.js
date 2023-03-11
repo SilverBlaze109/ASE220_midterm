@@ -43,12 +43,24 @@ const quotes={
 				let tempDiv = document.getElementById('quote-author');
 				tempDiv.innerHTML += item.answers[x];
 				tempDiv.innerHTML += `&emsp;<a type="button" class="btn btn-primary" href="editC.html?section=${section}&index=${index}&comindex=${x}">Edit Comment</a>\n`
-				tempDiv.innerHTML += `&emsp;<button id="delCom" class="btn btn-danger">Delete Comment</button><hr>`
-				let delB = document.getElementById('delCom');
-				delB.addEventListener('click',function(){
+				tempDiv.innerHTML += `&emsp;<button id="delcom${x}" class="btn btn-danger">Delete Comment</button><hr>`
+				let delB = document.getElementById('delcom'+x);
+				console.log(delB);
+				/*
+				document.getElementById('delcom'+x).addEventListener('click',function(){
+					console.log("button clicked"+x);
+					database.deleteC(quotes.documentID,section,index,x);
+				});
+				*/
+			}
+			for (let x = 0; x < item.answers.length; x++)
+			{
+				document.getElementById('delcom'+x).addEventListener('click',function(){
+					console.log("button clicked"+x);
 					database.deleteC(quotes.documentID,section,index,x);
 				});
 			}
+
 			document.getElementById('quote-text').innerText=item.questions;
 			document.getElementById('btn-edit').setAttribute('href',`edit.html?index=${index}&section=${section}`);
 							
