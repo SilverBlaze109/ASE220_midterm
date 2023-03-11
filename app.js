@@ -42,8 +42,8 @@ const quotes={
 			{
 				let tempDiv = document.getElementById('quote-author');
 				tempDiv.innerHTML += item.answers[x];
-				tempDiv.innerHTML += `&emsp;<button type="button" class="btn btn-primary" href="editC.html?section=${section}&index=${index}&comindex=${x}">Edit Comment</a>\n`
-				tempDiv.innerHTML += `&emsp;<button type="button" id="delCom" class="btn btn-danger">Delete Comment</button><hr>`
+				tempDiv.innerHTML += `&emsp;<a type="button" class="btn btn-primary" href="editC.html?section=${section}&index=${index}&comindex=${x}">Edit Comment</a>\n`
+				tempDiv.innerHTML += `&emsp;<button id="delCom" class="btn btn-danger">Delete Comment</button><hr>`
 				let delB = document.getElementById('delCom');
 				delB.addEventListener('click',function(){
 					database.deleteC(quotes.documentID,section,index,x);
