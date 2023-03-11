@@ -45,7 +45,7 @@ const quotes={
 				tempDiv.innerHTML += `&emsp;<a type="button" class="btn btn-primary" href="editC.html?section=${section}&index=${index}&comindex=${x}">Edit Comment</a>\n`
 				tempDiv.innerHTML += `&emsp;<button id="delcom${x}" class="btn btn-danger">Delete Comment</button><hr>`
 				let delB = document.getElementById('delcom'+x);
-				console.log(delB);
+				//console.log(delB);
 				/*
 				document.getElementById('delcom'+x).addEventListener('click',function(){
 					console.log("button clicked"+x);
